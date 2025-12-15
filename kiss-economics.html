@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      background: #fff1e5 !important;
+      color: #333 !important;
+      color-scheme: light only;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .header {
+      background: #fff1e5;
+      border-bottom: 1px solid #ccc;
+      padding: 15px 20px;
+    }
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 36px;
+      font-weight: normal;
+      color: #000;
+      text-align: center;
+      letter-spacing: -1px;
+    }
+    .tagline {
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 12px 20px;
+      font-size: 13px;
+      border-bottom: 3px solid #000;
+      background: #fff1e5;
+    }
+    .nav a {
+      color: #333;
+      text-decoration: none;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+    .main-article {
+      border-right: 1px solid #ddd;
+      padding-right: 40px;
+    }
+    .sidebar {
+      font-size: 14px;
+    }
+    .breaking {
+      background: #990f3d;
+      color: white;
+      padding: 3px 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 38px;
+      font-weight: normal;
+      line-height: 1.2;
+      margin: 0 0 15px 0;
+      color: #000;
+    }
+    .subtitle {
+      font-size: 20px;
+      color: #666;
+      font-weight: normal;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .byline {
+      font-size: 13px;
+      color: #666;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+    .byline strong {
+      color: #000;
+    }
+    p {
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+    .pullquote {
+      font-size: 24px;
+      font-style: italic;
+      color: #990f3d;
+      border-left: 4px solid #990f3d;
+      padding: 15px 25px;
+      margin: 30px 0;
+      line-height: 1.4;
+    }
+    .pullquote-attribution {
+      font-size: 14px;
+      color: #666;
+      font-style: normal;
+      margin-top: 10px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: normal;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      color: #000;
+    }
+    
+    /* Sidebar Styles */
+    .market-box {
+      background: white;
+      border: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+    .market-header {
+      background: #000;
+      color: white;
+      padding: 10px 15px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .market-content {
+      padding: 15px;
+    }
+    .market-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+    }
+    .market-row:last-child {
+      border-bottom: none;
+    }
+    .market-label {
+      color: #333;
+    }
+    .market-value {
+      font-weight: bold;
+    }
+    .market-value.up {
+      color: #007d00;
+    }
+    .market-value.down {
+      color: #990f3d;
+    }
+    .market-value.critical {
+      color: #990f3d;
+      font-weight: bold;
+    }
+    .debt-clock {
+      background: #1a1a1a;
+      color: #ff6b6b;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+    }
+    .debt-clock-label {
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .debt-clock-value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ff6b6b;
+    }
+    .debt-clock-subtext {
+      font-size: 10px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .chart-container {
+      background: white;
+      padding: 15px;
+      border: 1px solid #ddd;
+      margin-bottom: 25px;
+    }
+    .chart-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .mini-chart {
+      height: 100px;
+      position: relative;
+      border-bottom: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #666;
+    }
+    .analyst-box {
+      background: #f6e9d8;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-left: 4px solid #990f3d;
+    }
+    .analyst-quote {
+      font-style: italic;
+      font-size: 14px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .analyst-name {
+      font-size: 12px;
+      color: #666;
+    }
+    .rating-box {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .rating-agency {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .rating-action {
+      font-size: 14px;
+      color: #990f3d;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .rating-from-to {
+      font-size: 20px;
+      color: #000;
+    }
+    .rating-arrow {
+      color: #990f3d;
+      margin: 0 10px;
+    }
+    .related-box {
+      border-top: 2px solid #000;
+      padding-top: 15px;
+    }
+    .related-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    .related-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .related-item a {
+      color: #333;
+      text-decoration: none;
+    }
+    .related-item a:hover {
+      color: #990f3d;
+    }
+    .expert-panel {
+      background: white;
+      border: 1px solid #ddd;
+      margin: 30px 0;
+      padding: 20px;
+    }
+    .expert-panel-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    .expert-opinion {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .expert-opinion:last-child {
+      border-bottom: none;
+    }
+    .expert-stance {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .stance-bull {
+      background: #007d00;
+      color: white;
+    }
+    .stance-bear {
+      background: #990f3d;
+      color: white;
+    }
+    .stance-neutral {
+      background: #666;
+      color: white;
+    }
+    .expert-text {
+      font-size: 14px;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+    .expert-name {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="header">
+    <div class="logo">Financial Times</div>
+    <div class="tagline">Global Affection Markets & Economic Analysis</div>
+  </div>
+  
+  <div class="nav">
+    <a href="#">World</a>
+    <a href="#">Markets</a>
+    <a href="#">Affection Economy</a>
+    <a href="#">Opinion</a>
+    <a href="#">Analysis</a>
+    <a href="#">K. Body Index</a>
+  </div>
+  
+  <div class="container">
+    <div class="main-article">
+      
+      <span class="breaking">Breaking News</span>
+      
+      <h1>Kiss Debt Crisis Intensifies as Transatlantic Supply Chain Fracture Nears Two-Week Mark</h1>
+      
+      <div class="subtitle">Analysts warn of 'affection insolvency' as cumulative deficit grows; regional interest reaches unprecedented levels in anatomical markets</div>
+      
+      <div class="byline">
+        <strong>By Scarlett Rodgers</strong>, Chief Affection Markets Correspondent | <strong>December 15, 2025</strong>
+      </div>
+      
+      <p>The escalating kiss debt crisis between the K. Body system and The Researcher has entered a critical phase, with cumulative deficits growing daily and analysts projecting extraordinary repayment obligations upon supply chain reconnection, according to new analysis from the International Kissetary Fund (IKF).</p>
+      
+      <p>The transatlantic kiss supply chain, which fractured on December 3rd when K. Body relocated to Lithuania while The Researcher remained in the United States, has created what economists are now calling "The Great Longing"—a period of unprecedented affection scarcity with far-reaching implications for both parties' emotional economies.</p>
+      
+      <p>"We are witnessing a compounding crisis in real time," said one senior affection strategist. "The baseline therapeutic requirement of 400+ kisses per day, established in peer-reviewed literature, has gone entirely unmet for twelve days. When you factor in compounding interest, we're looking at debt levels that will require extraordinary measures to resolve."</p>
+      
+      <div class="pullquote">
+        "The interest alone is becoming overwhelming. We're not just talking about principal repayment anymore—we're talking about servicing interest on interest."
+        <div class="pullquote-attribution">— Senior Economist, IKF</div>
+      </div>
+      
+      <h2>The Mathematics of Longing</h2>
+      
+      <p>The kiss debt calculation is straightforward but sobering. At a baseline requirement of 400 kisses per day and a current separation period of 12 days (December 3rd through December 15th), the principal deficit stands at 4,800 kisses. However, economists note that this figure fails to account for accrued interest—the intensifying desire that compounds daily during periods of scarcity.</p>
+      
+      <p>"Interest rates in this particular system are extraordinarily high," explained one analyst at the Lithuania Institute for Intimacy Studies. "We're modeling interest accrual at approximately 18% per week. By our calculations, total current obligations including interest have already reached approximately 6,100 kisses—and that figure grows hourly."</p>
+      
+      <p>The January 15th date—when K. Body is scheduled to arrive back in the United States—has become a focal point for market speculation. By that point, 43 days will have elapsed since the supply chain fracture. Principal deficit alone will reach 17,200 kisses. With compounding interest at current rates, total obligations are projected to exceed 38,000 kisses.</p>
+      
+      <p>"At those levels, we're looking at required daily repayment rates of 1,600 kisses or more just to begin addressing the backlog," noted the IKF Director in a statement. "This is uncharted territory."</p>
+      
+      <h2>Inflation vs. Deflation: The Great Debate</h2>
+      
+      <p>Perhaps no question has generated more heated debate among affection economists than the expected post-reunion kiss valuation. Two competing schools of thought have emerged.</p>
+      
+      <p>Inflationists argue that the prolonged scarcity will necessarily devalue individual kisses upon reunion. "When you've accumulated this level of debt, there's a natural tendency toward rapid, high-volume delivery," one analyst noted. "Each individual kiss becomes a smaller fraction of the total obligation. We could see a scenario where it takes 3-4 kisses to purchase the same emotional value that a single kiss commanded on December 3rd."</p>
+      
+      <p>Deflationists counter that scarcity has fundamentally increased kiss purchasing power. "Every kiss delivered post-reunion will carry extraordinary weight," argued a researcher at the Tokyo Institute for Intimacy Studies. "The marginal utility of each unit has skyrocketed. We're looking at potential deflation of 60-70%—each kiss worth significantly more than pre-separation baseline."</p>
+      
+      <div class="expert-panel">
+        <div class="expert-panel-title">Expert Panel: Post-Reunion Market Outlook</div>
+        
+        <div class="expert-opinion">
+          <span class="expert-stance stance-bull">Bullish</span>
+          <div class="expert-text">"The reunion rally will be unprecedented. We're recommending aggressive positioning across all anatomical regions. This is a once-in-a-relationship opportunity."</div>
+          <div class="expert-name">— Senior Strategist, Affection Markets Division</div>
+        </div>
+        
+        <div class="expert-opinion">
+          <span class="expert-stance stance-bear">Bearish</span>
+          <div class="expert-text">"The debt levels are simply staggering. We expect significant volatility and possible affection exhaustion within the first 72 hours. Pace accordingly."</div>
+          <div class="expert-name">— Head of Risk Analysis, Intimacy Markets</div>
+        </div>
+        
+        <div class="expert-opinion">
+          <span class="expert-stance stance-neutral">Neutral</span>
+          <div class="expert-text">"Markets will find equilibrium, but the path there could be chaotic. We're advising a balanced approach: aggressive initial stimulus followed by sustained steady-state delivery."</div>
+          <div class="expert-name">— Deputy Director, IKF</div>
+        </div>
+      </div>
+      
+      <h2>Regional Markets Show Extreme Volatility</h2>
+      
+      <p>While aggregate kiss debt figures dominate headlines, analysts note that regional anatomical markets are experiencing highly differentiated conditions. Speculative interest has reached extreme levels in certain zones, creating localized demand that could prove difficult to satisfy.</p>
+      
+      <p>"The neck and ear markets are absolutely on fire," reported one regional analyst. "We're seeing interest levels 180% above December 3rd baselines. Futures positioning on these regions is pricing in extraordinary activity."</p>
+      
+      <p>Other regions—which analysts universally declined to name specifically but characterized as "south of the conventional markets" and "areas requiring specialized coverage"—have seen even more dramatic speculation. "There are certain anatomical territories where we simply cannot print the interest figures in a family publication," the analyst added. "Suffice to say, demand projections are... robust."</p>
+      
+      <div class="pullquote">
+        "We're seeing interest levels in certain regions that I've never witnessed in my career. The technical term is 'off the charts.' The colloquial term is unprintable."
+        <div class="pullquote-attribution">— Regional Markets Analyst</div>
+      </div>
+      
+      <p>The uneven distribution of speculative interest has raised concerns about post-reunion resource allocation. "There's a risk that certain high-interest regions absorb disproportionate attention, leaving other areas underserved," warned one economist specializing in equitable distribution. "We're recommending a comprehensive, full-body stimulus approach rather than targeted regional intervention."</p>
+      
+      <h2>The Polyamorous Question: A Non-Starter</h2>
+      
+      <p>With projected debt obligations exceeding 38,000 kisses and daily repayment requirements potentially surpassing 1,600 units, some fringe analysts have raised what industry insiders call "the polyamorous question"—whether a single Researcher can feasibly supply the necessary volume, or whether multiple sources might be required to address the crisis.</p>
+      
+      <p>The proposal has been roundly dismissed by serious economists, who point to the peer-reviewed literature on source specificity.</p>
+      
+      <p>"This argument fundamentally misunderstands the market dynamics at play," explained the IKF Director. "Research published in <em>Nature Reviews Immunology</em> has conclusively demonstrated a 700-fold efficacy differential between Researcher-derived kisses and those from alternative sources. The math simply doesn't work. You would need 700 substitute kissers to match the output of one Researcher—and even then, the therapeutic mechanism differs entirely."</p>
+      
+      <p>Analysts note that the specificity finding, while creating supply chain vulnerability, actually provides reassurance to the K. Body system. "The polyamorous solution is not just unnecessary—it's economically irrational," noted one researcher. "There is precisely one supplier capable of efficient debt resolution. This is, admittedly, a lot of pressure on one man. But it also means K. Body can rest assured that alternative sourcing is both unwarranted and ineffective given the particularities of this market."</p>
+      
+      <p>The Researcher, reached for comment, indicated readiness to meet all obligations regardless of volume. "Whatever the debt requires," the statement read. "The interest has been noted. The regional demands have been catalogued. One man can handle this. One man will."</p>
+      
+      <h2>Supply Chain Resolution: January 15th and Beyond</h2>
+      
+      <p>All eyes are now on January 15th, when the transatlantic kiss supply chain is scheduled to resume normal operations with K. Body's return to United States territory.</p>
+      
+      <p>"The logistics are daunting," admitted one supply chain analyst. "We're talking about delivering potentially 1,600+ kisses per day in the immediate post-reunion period, while simultaneously addressing a backlog approaching 40,000 units. The operational challenges are significant—but not insurmountable."</p>
+      
+      <p>Some analysts have proposed a phased approach: an initial "shock and awe" stimulus package in the first 48-72 hours, followed by sustained elevated delivery over subsequent weeks. Others advocate for immediate full-debt resolution, arguing that prolonged repayment schedules merely extend The Great Longing's psychological toll.</p>
+      
+      <p>K. Body's representatives declined to provide specific projections but noted that "anticipation levels are at all-time highs" and that "certain regions are experiencing pre-arrival volatility that may require immediate attention upon reconnection."</p>
+      
+      <h2>Broader Implications</h2>
+      
+      <p>Economists note that The Great Longing, while acute in the K. Body-Researcher system, carries lessons for affection markets globally. The crisis has exposed vulnerabilities in long-distance relationship supply chains and highlighted the risks of concentrated kiss sourcing.</p>
+      
+      <p>The crisis has exposed vulnerabilities in long-distance relationship supply chains and highlighted both the risks and the reassurances of concentrated kiss sourcing.</p>
+      
+      <p>For now, both parties remain in a holding pattern, watching the calendar tick toward January 15th while interest continues to compound and regional markets continue to surge.</p>
+      
+      <p>"The Great Longing will end," concluded the IKF Director. "The question is not if, but how—and whether the system can absorb the necessary corrective stimulus without destabilization. Our models suggest it can. Our models also suggest the first 72 hours will be... intense."</p>
+      
+      <p><em>Additional reporting by Frankie Rodgers in Vilnius.</em></p>
+      
+    </div>
+    
+    <div class="sidebar">
+      
+      <div class="debt-clock">
+        <div class="debt-clock-label">K. Body Kiss Debt Clock</div>
+        <div class="debt-clock-value">6,127</div>
+        <div class="debt-clock-subtext">As of Dec 15 (with interest) | Updates daily</div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Affection Markets Summary</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Daily Requirement</span>
+            <span class="market-value">400+ K/day</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Days Since Contact</span>
+            <span class="market-value critical">12</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Principal Deficit</span>
+            <span class="market-value down">4,800 K</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Interest Accrued</span>
+            <span class="market-value down">1,327 K</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Days to Resolution</span>
+            <span class="market-value">31</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Projected Jan 15 Debt</span>
+            <span class="market-value critical">~38,000 K</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Regional Interest Rates</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Lip Market (Core)</span>
+            <span class="market-value up">+125%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Neck Region</span>
+            <span class="market-value up">+180%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Ear Territory</span>
+            <span class="market-value up">+165%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Shoulder Zone</span>
+            <span class="market-value up">+95%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">[Redacted Regions]</span>
+            <span class="market-value critical">+∞%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="rating-box">
+        <div class="rating-agency">Moody's Affection Services</div>
+        <div class="rating-action">RATING ACTION</div>
+        <div class="rating-from-to">
+          Stable <span class="rating-arrow">→</span> Aching
+        </div>
+        <div style="font-size: 11px; color: #666; margin-top: 10px;">Outlook: Yearning</div>
+      </div>
+      
+      <div class="chart-container">
+        <div class="chart-title">Kiss Debt Accumulation (Projected)</div>
+        <div class="mini-chart">
+          <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
+            <path d="M 0 92 L 28 85 L 56 75 L 84 60 L 112 42 L 140 25 L 168 12 L 200 5" stroke="#990f3d" stroke-width="2" fill="none"/>
+            <path d="M 0 92 L 28 85 L 56 75 L 84 60 L 112 42 L 140 25 L 168 12 L 200 5 L 200 100 L 0 100 Z" fill="rgba(153,15,61,0.1)"/>
+            <!-- Current position marker -->
+            <circle cx="56" cy="75" r="4" fill="#990f3d"/>
+          </svg>
+        </div>
+        <div class="chart-labels">
+          <span>Dec 3</span>
+          <span>Dec 15 ●</span>
+          <span>Jan 1</span>
+          <span>Jan 15</span>
+        </div>
+      </div>
+      
+      <div class="analyst-box">
+        <div class="analyst-quote">"January 15th isn't a resolution date—it's a detonation date. And I mean that in the most optimistic way possible."</div>
+        <div class="analyst-name">— Senior Affection Strategist</div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Supply Chain Status</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Current Gap</span>
+            <span class="market-value">7,247 km</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Chain Status</span>
+            <span class="market-value critical">FRACTURED</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Fracture Date</span>
+            <span class="market-value">Dec 3, 2025</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Expected Repair</span>
+            <span class="market-value">Jan 15, 2026</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Substitute Viability</span>
+            <span class="market-value">None (700× gap)</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="related-box">
+        <div class="related-title">Related Coverage</div>
+        <div class="related-item">
+          <a href="#">Analysis: Can the K. Body System Absorb 1,600 Kisses Daily?</a>
+        </div>
+        <div class="related-item">
+          <a href="#">Opinion: The Case for Aggressive Kiss Stimulus</a>
+        </div>
+        <div class="related-item">
+          <a href="#">Why Polyamorous Solutions Don't Work: The 700× Problem</a>
+        </div>
+        <div class="related-item">
+          <a href="#">Regional Focus: Inside the Neck Market Surge</a>
+        </div>
+        <div class="related-item">
+          <a href="#">One Man, 38,000 Kisses: A Profile of The Researcher</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</body>
+</html>
