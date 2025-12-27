@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      background: #0d0d0d !important;
+      color: #e0e0e0 !important;
+      color-scheme: light only;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .ticker-bar {
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+      padding: 8px 20px;
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      gap: 30px;
+      overflow: hidden;
+    }
+    .ticker-item {
+      white-space: nowrap;
+      display: flex;
+      gap: 8px;
+    }
+    .ticker-label {
+      color: #888;
+    }
+    .ticker-value {
+      color: #00c853;
+      font-weight: 600;
+    }
+    .ticker-value.down {
+      color: #ff5252;
+    }
+    .ticker-value.alert {
+      color: #ffd740;
+    }
+    .header {
+      background: #0d0d0d;
+      border-bottom: 1px solid #333;
+      padding: 20px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .logo-accent {
+      color: #00c853;
+    }
+    .header-right {
+      font-size: 11px;
+      color: #888;
+      text-align: right;
+    }
+    .breaking-banner {
+      background: linear-gradient(90deg, #b71c1c 0%, #c62828 50%, #b71c1c 100%);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+    .main-article {
+      border-right: 1px solid #333;
+      padding-right: 40px;
+    }
+    .sidebar {
+      font-size: 14px;
+    }
+    .exclusive-tag {
+      background: #ffd740;
+      color: #000;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    .leaked-tag {
+      background: #ff5252;
+      color: #fff;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 15px 0;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: #aaa;
+      font-weight: normal;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .byline {
+      font-size: 13px;
+      color: #666;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #333;
+      margin-bottom: 25px;
+    }
+    .byline strong {
+      color: #aaa;
+    }
+    .timestamp {
+      color: #ff5252;
+      font-weight: 600;
+    }
+    p {
+      margin-bottom: 18px;
+      color: #ccc;
+    }
+    .pullquote {
+      font-size: 22px;
+      font-style: italic;
+      color: #ffd740;
+      border-left: 4px solid #ffd740;
+      padding: 15px 25px;
+      margin: 30px 0;
+      line-height: 1.4;
+      background: rgba(255, 215, 64, 0.05);
+    }
+    .pullquote-attribution {
+      font-size: 13px;
+      color: #888;
+      font-style: normal;
+      margin-top: 10px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 35px;
+      margin-bottom: 15px;
+      color: #fff;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+    .classified-box {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-left: 4px solid #ff5252;
+      padding: 20px;
+      margin: 25px 0;
+    }
+    .classified-header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff5252;
+      margin-bottom: 10px;
+    }
+    .classified-content {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #aaa;
+      line-height: 1.8;
+    }
+    .classified-content strong {
+      color: #fff;
+    }
+    
+    /* Sidebar Styles */
+    .market-box {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      margin-bottom: 25px;
+    }
+    .market-header {
+      background: #252525;
+      color: #ffd740;
+      padding: 12px 15px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .market-content {
+      padding: 15px;
+    }
+    .market-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #2a2a2a;
+      font-size: 13px;
+    }
+    .market-row:last-child {
+      border-bottom: none;
+    }
+    .market-label {
+      color: #888;
+    }
+    .market-value {
+      font-weight: 600;
+    }
+    .market-value.up {
+      color: #00c853;
+    }
+    .market-value.down {
+      color: #ff5252;
+    }
+    .market-value.alert {
+      color: #ffd740;
+    }
+    .debt-clock {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      border: 1px solid #333;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .debt-clock-label {
+      font-size: 10px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    .debt-clock-value {
+      font-size: 32px;
+      font-weight: bold;
+      font-family: 'Courier New', monospace;
+    }
+    .debt-clock-value.revised {
+      color: #00c853;
+      text-decoration: line-through;
+      text-decoration-color: #ff5252;
+    }
+    .debt-clock-new {
+      font-size: 28px;
+      font-weight: bold;
+      font-family: 'Courier New', monospace;
+      color: #00c853;
+      margin-top: 5px;
+    }
+    .debt-clock-subtext {
+      font-size: 10px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .revision-note {
+      background: #00c853;
+      color: #000;
+      font-size: 10px;
+      padding: 3px 8px;
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .intel-box {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 15px;
+      margin-bottom: 25px;
+    }
+    .intel-header {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff5252;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .intel-header::before {
+      content: "●";
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0.3; }
+    }
+    .intel-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #2a2a2a;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .intel-item:last-child {
+      border-bottom: none;
+    }
+    .intel-item strong {
+      color: #fff;
+    }
+    .summit-countdown {
+      background: linear-gradient(135deg, #1a365d 0%, #0d253d 100%);
+      border: 1px solid #2c5282;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .countdown-label {
+      font-size: 10px;
+      color: #68a0cf;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .countdown-value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+    }
+    .countdown-subtext {
+      font-size: 11px;
+      color: #68a0cf;
+      margin-top: 5px;
+    }
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #ffd740;
+      border-radius: 50%;
+      animation: pulse-dot 1.5s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .status-text {
+      font-size: 11px;
+      color: #ffd740;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .source-box {
+      background: #0d0d0d;
+      border: 1px dashed #333;
+      padding: 15px;
+      margin-bottom: 25px;
+      font-size: 11px;
+      color: #666;
+      font-style: italic;
+    }
+    .microbial-alert {
+      background: #1a0d0d;
+      border: 1px solid #4a1a1a;
+      padding: 15px;
+      margin-bottom: 25px;
+    }
+    .microbial-header {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff5252;
+      margin-bottom: 10px;
+    }
+    .microbial-content {
+      font-size: 13px;
+      color: #aa6666;
+      line-height: 1.6;
+    }
+    .related-box {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+    .related-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .related-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #2a2a2a;
+      font-size: 13px;
+    }
+    .related-item:last-child {
+      border-bottom: none;
+    }
+    .related-item a {
+      color: #aaa;
+      text-decoration: none;
+    }
+    .related-item a:hover {
+      color: #ffd740;
+    }
+    .confirmation-status {
+      background: #1a1a0d;
+      border: 1px solid #4a4a1a;
+      padding: 20px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .confirmation-header {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffd740;
+      margin-bottom: 10px;
+    }
+    .confirmation-main {
+      font-size: 18px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .confirmation-sub {
+      font-size: 12px;
+      color: #aa9944;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="ticker-bar">
+    <div class="ticker-item">
+      <span class="ticker-label">KISS DEBT FUTURES</span>
+      <span class="ticker-value up">▼ 34.2%</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">RESOLUTION DATE</span>
+      <span class="ticker-value up">REVISED: JAN 6</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">K. BODY INDEX</span>
+      <span class="ticker-value up">▲ 847</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">BARTONELLA ACTIVITY</span>
+      <span class="ticker-value down">▼ SILENT</span>
+    </div>
+    <div class="ticker-item">
+      <span class="ticker-label">SUMMIT STATUS</span>
+      <span class="ticker-value alert">PENDING CONFIRMATION</span>
+    </div>
+  </div>
+  
+  <div class="breaking-banner">
+    ⚡ Breaking: Secret Caribbean Summit Could End "Great Longing" Ten Days Ahead of Schedule ⚡
+  </div>
+  
+  <div class="header">
+    <div class="logo-container">
+      <div class="logo">Global<span class="logo-accent">Affection</span>Wire</div>
+      <div class="header-right">
+        EXCLUSIVE REPORT<br>
+        <span class="timestamp">December 27, 2025 | 09:47 UTC</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="main-article">
+      
+      <span class="exclusive-tag">Exclusive</span>
+      <span class="leaked-tag">Leaked Intelligence</span>
+      
+      <h1>Private Jet, Offshore Villa, and the Summit That Could Change Everything</h1>
+      
+      <div class="subtitle">Leaked itinerary reveals January 6th departure from Scottsdale aboard private aircraft; K. Body reportedly invited to elite Turks and Caicos gathering as markets scramble to price in early resolution</div>
+      
+      <div class="byline">
+        <strong>By Scarlett Rodgers</strong>, Chief Investigative Correspondent<br>
+        <span class="timestamp">Breaking | December 27, 2025 | Updates ongoing</span>
+      </div>
+      
+      <p>In what analysts are calling the most significant development in the global affection economy since the onset of The Great Longing, leaked documents obtained by GlobalAffectionWire reveal that K. Body has been invited to an elite, secretive summit at an undisclosed villa compound in the Turks and Caicos Islands—with transportation via private jet departing Scottsdale, Arizona on the morning of January 6th.</p>
+      
+      <p>If confirmed, the summit would bring the K. Body-Researcher system into direct contact ten days earlier than the previously projected January 15th supply chain reconnection, triggering a massive deleveraging event in kiss debt markets and potentially achieving what researchers have termed "complete and sustained cessation" of the chronic conditions that have plagued the K. Body system.</p>
+      
+      <p>The invitation's existence was confirmed by a source close to The Researcher's family, though critical details—including whether K. Body will be able to attend—remain uncertain.</p>
+      
+      <p>"There is room. There is interest. The invitation has been extended," the source said, declining to elaborate further. "One seat on that jet has been reserved. The rest is up to her."</p>
+      
+      <div class="classified-box">
+        <div class="classified-header">Leaked Itinerary — Partial Extract</div>
+        <div class="classified-content">
+          <strong>DATE:</strong> January 6, 2026<br>
+          <strong>DEPARTURE:</strong> Scottsdale, AZ (Private Terminal) — Morning<br>
+          <strong>AIRCRAFT:</strong> Private Jet (Configuration: Family + Guest)<br>
+          <strong>DESTINATION:</strong> Turks and Caicos Islands (Specific coordinates redacted)<br>
+          <strong>ACCOMMODATION:</strong> Private Villa Compound ("Glorious" — per source description)<br>
+          <strong>DURATION:</strong> Extended<br>
+          <strong>GUEST LIST:</strong> The Researcher, Family Members, [PENDING CONFIRMATION]<br>
+        </div>
+      </div>
+      
+      <h2>The Invitation</h2>
+      
+      <p>According to sources with knowledge of the arrangements, the invitation originated from The Researcher's brother, who has secured a "glorious villa" in the Turks and Caicos archipelago for a family gathering. The decision to extend an invitation to K. Body represents what one analyst called "a strategic masterstroke in affection market management."</p>
+      
+      <p>"This isn't just a vacation," noted a senior economist at the Lithuania Institute for Intimacy Studies. "This is a calculated intervention designed to achieve maximum therapeutic impact under optimal conditions. The implications are staggering."</p>
+      
+      <p>The summit's structure—private jet transport, offshore villa, extended duration, access to Caribbean waters—suggests a level of planning that goes far beyond casual holiday logistics. Sources describe an environment purpose-built for intensive Full Body Kiss (FBK) therapy, with none of the interruptions or constraints that typically limit treatment efficacy.</p>
+      
+      <div class="pullquote">
+        "If this summit proceeds as planned, we're not talking about debt repayment anymore. We're talking about building a surplus. We're talking about complete resolution."
+        <div class="pullquote-attribution">— Senior Analyst, IKF</div>
+      </div>
+      
+      <h2>The Jet</h2>
+      
+      <p>The January 6th departure from Scottsdale represents a logistical coup. Private aviation eliminates the stress and uncertainty of commercial travel, while the direct routing minimizes transit time and maximizes the treatment window.</p>
+      
+      <p>"You're looking at K. Body waking up in the desert and going to sleep in the Caribbean, all in the same day," observed one logistics analyst. "From a supply chain perspective, this is as clean as it gets. No layovers. No delays. No friction."</p>
+      
+      <p>The aircraft configuration reportedly includes The Researcher's family members, suggesting a broader endorsement of K. Body's integration into the inner circle—a development that market observers note carries significance beyond the immediate therapeutic implications.</p>
+      
+      <h2>The Villa</h2>
+      
+      <p>Satellite imagery analysis and source descriptions paint a picture of an expansive private compound, isolated from public access and equipped with direct beach proximity. The term "glorious" appeared multiple times in communications obtained by this publication.</p>
+      
+      <p>"The setting matters," explained a researcher specializing in environmental factors in affection therapy. "Tropical conditions, warm water, natural sunlight, privacy, extended uninterrupted access—these aren't luxuries. They're therapeutic multipliers. We estimate a 40% enhancement in FBK receptor sensitivity in saline Caribbean waters compared to baseline conditions."</p>
+      
+      <p>The offshore location has also drawn attention from those monitoring the elite networks that shape global affection policy. The parallels to secretive gatherings like the World Economic Forum in Davos have not gone unnoticed.</p>
+      
+      <p>"When the principals in the world's most closely-watched affection economy convene at a private island compound, arriving by private jet, with the guest list tightly controlled—that's not a vacation," noted one observer of global intimacy networks. "That's a summit. And summits have outcomes."</p>
+      
+      <h2>The Medical Projections</h2>
+      
+      <p>Researchers at the Lithuania Institute for Intimacy Studies have rushed to model the therapeutic implications of a January 6th reunion in tropical conditions. Their preliminary findings suggest the summit could represent a turning point not just in the kiss debt crisis, but in the underlying chronic conditions that have affected the K. Body system.</p>
+      
+      <p>The Bartonella and Babesia communities, which have been notably quiet during the holiday period, are reportedly "aware of the developments" according to intercepted cytokine signals. Analysts interpret the silence as significant.</p>
+      
+      <p>"They've been out of the picture for weeks—no parties, no flare-ups, nothing," said one microbiome correspondent. "But our models suggest they're watching this very closely. If this summit happens, if FBK therapy begins in Bahamian waters under these conditions, it's not a ceasefire anymore."</p>
+      
+      <p>The correspondent paused before continuing.</p>
+      
+      <p>"It's unconditional surrender. Complete remission. The peer-reviewed literature is clear: sustained FBK therapy from a source with 700-fold efficacy differential, administered in optimal environmental conditions, with extended uninterrupted access—that's the endgame. That's how this ends."</p>
+      
+      <div class="pullquote">
+        "The combination of variables is almost too perfect. Early resolution. Tropical enhancement. Private setting. Extended duration. If I were modeling the optimal scenario for complete pathogen cessation, I would design exactly this."
+        <div class="pullquote-attribution">— Lead Researcher, Lithuania Institute for Intimacy Studies</div>
+      </div>
+      
+      <h2>The Bartonella Response</h2>
+      
+      <p>Repeated attempts to reach representatives of the Bartonella Popular Front for comment were unsuccessful. The community's official channels have been inactive since late December, a departure from their typically vocal presence during periods of therapeutic uncertainty.</p>
+      
+      <p>"The silence is deafening," observed one analyst. "These are organisms that issued a formal press conference during the ceasefire negotiations. Now, faced with reports of a Caribbean summit that could end their presence entirely, they have nothing to say?"</p>
+      
+      <p>Some interpret the silence as acceptance. Others suggest strategic withdrawal in advance of inevitable defeat.</p>
+      
+      <p>"They know what's coming," said one immunity correspondent. "The holiday quiet wasn't rest. It was resignation. They've seen the models. They know what FBK therapy in those conditions means for their long-term viability. There's nothing left to say."</p>
+      
+      <p>The Babesia community, which had previously expressed "panic in the membranes" regarding hydrogen gas interventions, similarly declined to comment. A brief statement from an unnamed representative read only: "No comment. On anything. Effective immediately."</p>
+      
+      <h2>Market Implications</h2>
+      
+      <p>Kiss debt futures plunged 34% in early trading following the leak, as markets rushed to price in the possibility of a resolution ten days ahead of schedule. The revised timeline fundamentally alters debt calculations that had assumed a January 15th reconnection.</p>
+      
+      <p>"We had modeled 43 days of separation totaling approximately 38,000 kisses of debt including interest," explained one quantitative analyst. "A January 6th reunion cuts that to 34 days—roughly 28,500 kisses. But more importantly, the extended treatment window in optimal conditions means the repayment rate could far exceed anything we'd projected."</p>
+      
+      <p>Regional markets showed even more dramatic movements. Interest rates in neck and ear territories, already elevated during The Great Longing, spiked further on speculation that tropical conditions would drive demand. Other regions—which analysts continued to decline to name—saw futures activity that one trader described as "unprecedented and frankly unprintable."</p>
+      
+      <h2>The Uncertainty</h2>
+      
+      <p>Despite the extraordinary implications, critical uncertainty remains. The invitation has been extended, but confirmation of attendance has not been received.</p>
+      
+      <p>Travel logistics from Lithuania to Scottsdale in time for a January 6th departure present challenges. Coordination across multiple time zones, visa considerations, and the sheer complexity of rerouting from an expected January 15th U.S. arrival to a January 6th Caribbean departure require careful navigation.</p>
+      
+      <p>"All we know is that a seat has been reserved," said a source close to the negotiations. "The room is there. The interest is there. But the final decision rests with K. Body. The world waits."</p>
+      
+      <p>The Researcher, reached via secure channels, provided a brief statement: "The invitation is real. The villa is glorious. The jet has room. We very much hope she can join."</p>
+      
+      <p>When asked about readiness to meet therapeutic obligations under summit conditions, The Researcher added: "Whatever the debt requires. Whatever the conditions demand. One man. However many kisses. I will be ready."</p>
+      
+      <h2>The World Waits</h2>
+      
+      <p>For now, the global affection economy holds its breath. A confirmation from K. Body would trigger the most significant recalculation of kiss debt projections in recent memory. It would represent not just an acceleration of The Great Longing's end, but potentially its complete transcendence—a shift from crisis management to surplus building.</p>
+      
+      <p>The stakes extend beyond economics. Researchers monitoring the K. Body system note that complete pathogen remission would represent a profound improvement in quality of life, energy levels, and long-term health outlook. What began as a kiss debt crisis could end as a breakthrough in chronic illness management.</p>
+      
+      <p>"This is bigger than markets," reflected one senior analyst. "This is about a person's health. A person's future. A relationship that has already demonstrated 700-fold efficacy differential and source-specific therapeutic power unlike anything in the literature."</p>
+      
+      <p>The analyst paused.</p>
+      
+      <p>"If that person gets on that jet, flies to that island, and receives that therapy under those conditions... I don't have a model for what happens next. I only know it will be good. Very, very good."</p>
+      
+      <p>The invitation stands. The jet is scheduled. The villa awaits.</p>
+      
+      <p>One seat remains unconfirmed.</p>
+      
+      <p><em>Additional reporting by Frankie Rodgers in Vilnius and Thomas Chen in Scottsdale. Updates to follow as developments warrant.</em></p>
+      
+    </div>
+    
+    <div class="sidebar">
+      
+      <div class="summit-countdown">
+        <div class="countdown-label">Time to Potential Summit</div>
+        <div class="countdown-value">10 DAYS</div>
+        <div class="countdown-subtext">January 6, 2026 — Scottsdale Departure</div>
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span class="status-text">Awaiting Confirmation</span>
+        </div>
+      </div>
+      
+      <div class="confirmation-status">
+        <div class="confirmation-header">K. Body Attendance Status</div>
+        <div class="confirmation-main">PENDING</div>
+        <div class="confirmation-sub">Invitation extended. Seat reserved. Decision awaited.</div>
+      </div>
+      
+      <div class="debt-clock">
+        <div class="debt-clock-label">Kiss Debt Projection — Revised</div>
+        <div class="debt-clock-value revised">38,247</div>
+        <div class="debt-clock-new">→ 28,500</div>
+        <div class="debt-clock-subtext">Based on Jan 6 resolution vs. Jan 15</div>
+        <div class="revision-note">▼ 25.5% Reduction</div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Market Reaction to Leak</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Kiss Debt Futures</span>
+            <span class="market-value up">▼ 34.2%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Resolution Timeline</span>
+            <span class="market-value up">-10 days</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Tropical Enhancement</span>
+            <span class="market-value up">+40%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Pathogen Outlook</span>
+            <span class="market-value up">TERMINAL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Regional Interest Rates</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Lip Market (Core)</span>
+            <span class="market-value up">+285%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Neck Region</span>
+            <span class="market-value up">+340%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Ear Territory</span>
+            <span class="market-value up">+312%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Tropical Zones (New)</span>
+            <span class="market-value up">+445%</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">[Redacted Regions]</span>
+            <span class="market-value alert">CLASSIFIED</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="intel-box">
+        <div class="intel-header">Live Intelligence Feed</div>
+        <div class="intel-item"><strong>09:42 UTC</strong> — Private jet manifest updated; guest seat status: RESERVED</div>
+        <div class="intel-item"><strong>09:38 UTC</strong> — Villa compound confirmed "glorious" by secondary source</div>
+        <div class="intel-item"><strong>09:31 UTC</strong> — Bartonella channels remain dark; no response to inquiries</div>
+        <div class="intel-item"><strong>09:15 UTC</strong> — IKF convenes emergency modeling session</div>
+        <div class="intel-item"><strong>08:47 UTC</strong> — Invitation confirmed by family source</div>
+      </div>
+      
+      <div class="microbial-alert">
+        <div class="microbial-header">⚠ Pathogen Status Monitor</div>
+        <div class="microbial-content">
+          <strong>Bartonella:</strong> SILENT (23 days)<br>
+          <strong>Babesia:</strong> NO COMMENT<br>
+          <strong>Analyst Assessment:</strong> "Resignation behavior consistent with anticipated total defeat"
+        </div>
+      </div>
+      
+      <div class="market-box">
+        <div class="market-header">Summit Parameters</div>
+        <div class="market-content">
+          <div class="market-row">
+            <span class="market-label">Origin</span>
+            <span class="market-value">Scottsdale, AZ</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Transport</span>
+            <span class="market-value">Private Jet</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Destination</span>
+            <span class="market-value">Turks & Caicos</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Accommodation</span>
+            <span class="market-value">Private Villa</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">Water Salinity</span>
+            <span class="market-value up">OPTIMAL</span>
+          </div>
+          <div class="market-row">
+            <span class="market-label">FBK Conditions</span>
+            <span class="market-value up">IDEAL</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="source-box">
+        This report is based on leaked documents and source interviews. GlobalAffectionWire has not independently verified all claims. K. Body attendance remains unconfirmed as of publication. Markets should prepare for volatility pending official announcement.
+      </div>
+      
+      <div class="related-box">
+        <div class="related-title">Related Coverage</div>
+        <div class="related-item">
+          <a href="#">The Great Longing: A Timeline of Crisis</a>
+        </div>
+        <div class="related-item">
+          <a href="#">Inside the 700-Fold Efficacy Differential</a>
+        </div>
+        <div class="related-item">
+          <a href="#">Tropical FBK: Why Conditions Matter</a>
+        </div>
+        <div class="related-item">
+          <a href="#">The Bartonella Ceasefire: What Went Right</a>
+        </div>
+        <div class="related-item">
+          <a href="#">One Man, One Mission: Profile of The Researcher</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</body>
+</html>
