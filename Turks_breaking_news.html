@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 14.7px Arial; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 14.7px 'Apple Color Emoji'; color: #000000; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none; background-color: #ffffff}
+    span.s2 {font-kerning: none}
+    span.s3 {font: 14.7px Times; font-kerning: none}
+    span.s4 {font: 14.7px 'Hiragino Mincho ProN'; font-kerning: none; background-color: #ffffff}
+    span.s5 {font: 14.7px Times; font-kerning: none; background-color: #ffffff}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;html&gt; &lt;head&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;meta name="color-scheme" content="light only"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;style&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">* { box-sizing: border-box; } html, body {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #0d0d0d !important; color: #e0e0e0 !important; color-scheme: light only;</span><span class="s2"><br>
+</span><span class="s1">margin: 0;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding: 0; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">body {</span><span class="s2"><br>
+</span><span class="s1">font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; font-size: 16px;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.7;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .ticker-bar {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a1a1a; border-bottom: 1px solid #333; padding: 8px 20px;</span><span class="s2"><br>
+</span><span class="s1">font-size: 12px;</span><span class="s2"><br>
+</span><span class="s1">color: #888;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">gap: 30px;</span><span class="s2"><br>
+</span><span class="s1">overflow: hidden;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .ticker-item {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">white-space: nowrap; display: flex;</span><span class="s2"><br>
+</span><span class="s1">gap: 8px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .ticker-label {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #888; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.ticker-value { color: #00c853; font-weight: 600;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .ticker-value.down {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #ff5252; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.ticker-value.alert { color: #ffd740;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .header {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #0d0d0d; border-bottom: 1px solid #333; padding: 20px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .logo-container {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center; justify-content: space-between; max-width: 1100px;</span><span class="s2"><br>
+</span><span class="s1">margin: 0 auto;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .logo {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-family: Georgia, serif; font-size: 28px; font-weight: bold;</span><span class="s2"><br>
+</span><span class="s1">color: #fff;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">letter-spacing: -0.5px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.logo-accent { color: #00c853;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .header-right {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 11px; color: #888; text-align: right;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .breaking-banner {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: linear-gradient(90deg, #b71c1c 0%, #c62828 50%, #b71c1c 100%); color: white;</span><span class="s2"><br>
+</span><span class="s1">padding: 12px 20px;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; animation: pulse 2s infinite;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">@keyframes pulse {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">0%, 100% { opacity: 1; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">50% { opacity: 0.85; } }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.container {</span><span class="s2"><br>
+</span><span class="s1">max-width: 1100px;</span><span class="s2"><br>
+</span><span class="s1">margin: 0 auto;</span><span class="s2"><br>
+</span><span class="s1">padding: 30px 20px;</span><span class="s2"><br>
+</span><span class="s1">display: grid; grid-template-columns: 2fr 1fr; gap: 40px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .main-article {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">border-right: 1px solid #333;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding-right: 40px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.sidebar { font-size: 14px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .exclusive-tag {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #ffd740; color: #000;</span><span class="s2"><br>
+</span><span class="s1">padding: 4px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 15px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .leaked-tag {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #ff5252; color: #fff;</span><span class="s2"><br>
+</span><span class="s1">padding: 4px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 15px; margin-left: 10px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} h1 {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 36px; font-weight: 700;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">line-height: 1.2; margin: 0 0 15px 0; color: #fff;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .subtitle {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 18px; color: #aaa; font-weight: normal; line-height: 1.5; margin-bottom: 20px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .byline {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 13px;</span><span class="s2"><br>
+</span><span class="s1">color: #666;</span><span class="s2"><br>
+</span><span class="s1">padding-bottom: 20px; border-bottom: 1px solid #333; margin-bottom: 25px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">.byline strong {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #aaa; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.timestamp { color: #ff5252; font-weight: 600;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} p{<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin-bottom: 18px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #ccc; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.pullquote {</span><span class="s2"><br>
+</span><span class="s1">font-size: 22px;</span><span class="s2"><br>
+</span><span class="s1">font-style: italic;</span><span class="s2"><br>
+</span><span class="s1">color: #ffd740;</span><span class="s2"><br>
+</span><span class="s1">border-left: 4px solid #ffd740; padding: 15px 25px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin: 30px 0;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.4;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(255, 215, 64, 0.05);<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .pullquote-attribution {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 13px; color: #888; font-style: normal; margin-top: 10px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} h2 {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 20px;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 35px; margin-bottom: 15px;</span><span class="s2"><br>
+</span><span class="s1">color: #fff;</span><span class="s2"><br>
+</span><span class="s1">border-bottom: 1px solid #333; padding-bottom: 10px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .classified-box {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a1a1a; border: 1px solid #333; border-left: 4px solid #ff5252; padding: 20px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin: 25px 0; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.classified-header { font-size: 11px; text-transform: uppercase; letter-spacing: 1px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #ff5252;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin-bottom: 10px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.classified-content {</span><span class="s2"><br>
+</span><span class="s1">font-family: 'Courier New', monospace; font-size: 13px;</span><span class="s2"><br>
+</span><span class="s1">color: #aaa;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.8;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">.classified-content strong {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #fff; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">```</span><span class="s2"><br>
+</span><span class="s1">/* Sidebar Styles */ .market-box {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a1a1a; border: 1px solid #333; margin-bottom: 25px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .market-header {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #252525; color: #ffd740;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding: 12px 15px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .market-content {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding: 15px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.market-row {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">justify-content: space-between; padding: 10px 0;</span><span class="s2"><br>
+</span><span class="s1">border-bottom: 1px solid #2a2a2a; font-size: 13px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .market-row:last-child {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">border-bottom: none; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.market-label { color: #888;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .market-value {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-weight: 600; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.market-value.up { color: #00c853;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .market-value.down {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #ff5252; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.market-value.alert { color: #ffd740;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .debt-clock {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border: 1px solid #333;</span><span class="s2"><br>
+</span><span class="s1">padding: 20px;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin-bottom: 25px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.debt-clock-label { font-size: 10px; color: #666;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .debt-clock-value {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 32px;</span><span class="s2"><br>
+</span><span class="s1">font-weight: bold;</span><span class="s2"><br>
+</span><span class="s1">font-family: 'Courier New', monospace;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .debt-clock-value.revised {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #00c853; text-decoration: line-through; text-decoration-color: #ff5252;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .debt-clock-new {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 28px;</span><span class="s2"><br>
+</span><span class="s1">font-weight: bold;</span><span class="s2"><br>
+</span><span class="s1">font-family: 'Courier New', monospace; color: #00c853;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 5px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .debt-clock-subtext {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 10px; color: #666; margin-top: 8px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .revision-note {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #00c853; color: #000;</span><span class="s2"><br>
+</span><span class="s1">font-size: 10px;</span><span class="s2"><br>
+</span><span class="s1">padding: 3px 8px;</span><span class="s2"><br>
+</span><span class="s1">display: inline-block; margin-top: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .intel-box {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a1a1a; border: 1px solid #333; padding: 15px; margin-bottom: 25px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .intel-header {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 10px; text-transform: uppercase; letter-spacing: 1px;</span><span class="s2"><br>
+</span><span class="s1">color: #ff5252; margin-bottom: 12px; display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">gap: 8px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .intel-header::before {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">content: "●";<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">animation: blink 1s infinite; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">@keyframes blink {</span><span class="s2"><br>
+</span><span class="s1">0%, 50%, 100% { opacity: 1; } 25%, 75% { opacity: 0.3; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .intel-item {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding: 8px 0;</span><span class="s2"><br>
+</span><span class="s1">border-bottom: 1px solid #2a2a2a; font-size: 12px;</span><span class="s2"><br>
+</span><span class="s1">color: #aaa;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .intel-item:last-child {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">border-bottom: none; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.intel-item strong { color: #fff;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .summit-countdown {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: linear-gradient(135deg, #1a365d 0%, #0d253d 100%); border: 1px solid #2c5282;</span><span class="s2"><br>
+</span><span class="s1">padding: 20px;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">margin-bottom: 25px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.countdown-label { font-size: 10px;</span><span class="s2"><br>
+</span><span class="s1">color: #68a0cf; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .countdown-value {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 36px;</span><span class="s2"><br>
+</span><span class="s1">font-weight: bold;</span><span class="s2"><br>
+</span><span class="s1">color: #fff;</span><span class="s2"><br>
+</span><span class="s1">font-family: 'Courier New', monospace;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .countdown-subtext {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 11px; color: #68a0cf; margin-top: 5px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .status-indicator {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">display: flex; align-items: center; gap: 8px;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 12px; justify-content: center;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .status-dot {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">width: 8px;</span><span class="s2"><br>
+</span><span class="s1">height: 8px;</span><span class="s2"><br>
+</span><span class="s1">background: #ffd740; border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">animation: pulse-dot 1.5s infinite;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">@keyframes pulse-dot {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">0%, 100% { transform: scale(1); opacity: 1; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">50% { transform: scale(1.3); opacity: 0.7; } }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.status-text {</span><span class="s2"><br>
+</span><span class="s1">font-size: 11px;</span><span class="s2"><br>
+</span><span class="s1">color: #ffd740; text-transform: uppercase; letter-spacing: 0.5px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .source-box {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #0d0d0d; border: 1px dashed #333; padding: 15px; margin-bottom: 25px; font-size: 11px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #666;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-style: italic; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.microbial-alert {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a0d0d; border: 1px solid #4a1a1a; padding: 15px; margin-bottom: 25px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .microbial-header {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 10px; text-transform: uppercase; letter-spacing: 1px;</span><span class="s2"><br>
+</span><span class="s1">color: #ff5252; margin-bottom: 10px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .microbial-content {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 13px; color: #aa6666; line-height: 1.6;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .related-box {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">border-top: 1px solid #333;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding-top: 20px; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.related-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 11px; text-transform: uppercase; letter-spacing: 1px;</span><span class="s2"><br>
+</span><span class="s1">color: #666; margin-bottom: 15px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .related-item {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">padding: 10px 0;</span><span class="s2"><br>
+</span><span class="s1">border-bottom: 1px solid #2a2a2a; font-size: 13px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .related-item:last-child {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">border-bottom: none; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.related-item a {</span><span class="s2"><br>
+</span><span class="s1">color: #aaa; text-decoration: none;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">.related-item a:hover {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">color: #ffd740; }<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">.confirmation-status {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">background: #1a1a0d; border: 1px solid #4a4a1a; padding: 20px; margin-bottom: 25px; text-align: center;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .confirmation-header {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 10px; text-transform: uppercase; letter-spacing: 1px;</span><span class="s2"><br>
+</span><span class="s1">color: #ffd740; margin-bottom: 10px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .confirmation-main {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 18px; color: #fff; font-weight: 600;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} .confirmation-sub {<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">font-size: 12px; color: #aa9944; margin-top: 8px;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">} ```<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/style&gt; &lt;/head&gt; &lt;body&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="ticker-bar"&gt; &lt;div class="ticker-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-label"&gt;KISS DEBT FUTURES&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-value up"&gt;▼ 34.2%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="ticker-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-label"&gt;RESOLUTION DATE&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-value up"&gt;REVISED: JAN 6&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="ticker-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-label"&gt;K. BODY INDEX&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-value up"&gt;▲ 847&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="ticker-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-label"&gt;BARTONELLA ACTIVITY&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-value down"&gt;▼ SILENT&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="ticker-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-label"&gt;SUMMIT STATUS&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="ticker-value alert"&gt;PENDING CONFIRMATION&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="breaking-banner"&gt;</span><span class="s2"><br>
+</span><span class="s1">Breaking: Secret Caribbean Summit Could End "Great Longing" Ten Days Ahead of<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">Schedule &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="header"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="logo-container"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="logo"&gt;Global&lt;span class="logo-accent"&gt;Affection&lt;/span&gt;Wire&lt;/div&gt; &lt;div class="header-right"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">EXCLUSIVE REPORT&lt;br&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="timestamp"&gt;December 27, 2025 | 09:47 UTC&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="container"&gt; &lt;div class="main-article"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">```</span><span class="s2"><br>
+</span><span class="s1">&lt;span class="exclusive-tag"&gt;Exclusive&lt;/span&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;span class="leaked-tag"&gt;Leaked Intelligence&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h1&gt;Private Jet, Offshore Villa, and the Summit That Could Change Everything&lt;/h1&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="subtitle"&gt;Leaked itinerary reveals January 6th departure from Scottsdale aboard private aircraft; K. Body reportedly invited to elite Turks and Caicos gathering as markets scramble to price in early resolution&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="byline"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;By Scarlett Rodgers&lt;/strong&gt;, Chief Investigative Correspondent&lt;br&gt; &lt;span class="timestamp"&gt;Breaking | December 27, 2025 | Updates ongoing&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;In what analysts are calling the most significant development in the global affection economy since the onset of The Great Longing, leaked documents obtained by GlobalAffectionWire reveal that K. Body has been invited to an elite, secretive summit at an<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s2">⚡</span><span class="s3"><br>
+</span><span class="s2">⚡</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">undisclosed villa compound in the Turks and Caicos Islands—with transportation via private jet departing Scottsdale, Arizona on the morning of January 6th.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;If confirmed, the summit would bring the K. Body-Researcher system into direct contact ten days earlier than the previously projected January 15th supply chain reconnection, triggering a massive deleveraging event in kiss debt markets and potentially achieving what researchers have termed "complete and sustained cessation" of the chronic conditions that have plagued the K. Body system.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The invitation's existence was confirmed by a source close to The Researcher's family, though critical details—including whether K. Body will be able to attend—remain uncertain.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"There is room. There is interest. The invitation has been extended," the source said, declining to elaborate further. "One seat on that jet has been reserved. The rest is up to her."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="classified-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="classified-header"&gt;Leaked Itinerary — Partial Extract&lt;/div&gt; &lt;div class="classified-content"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;strong&gt;DATE:&lt;/strong&gt; January 6, 2026&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;DEPARTURE:&lt;/strong&gt; Scottsdale, AZ (Private Terminal) — Morning&lt;br&gt; &lt;strong&gt;AIRCRAFT:&lt;/strong&gt; Private Jet (Configuration: Family + Guest)&lt;br&gt; &lt;strong&gt;DESTINATION:&lt;/strong&gt; Turks and Caicos Islands (Specific coordinates<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">redacted)&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;ACCOMMODATION:&lt;/strong&gt; Private Villa Compound ("Glorious" — per source<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">description)&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;DURATION:&lt;/strong&gt; Extended&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;GUEST LIST:&lt;/strong&gt; The Researcher, Family Members, [PENDING<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">CONFIRMATION]&lt;br&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Invitation&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;According to sources with knowledge of the arrangements, the invitation originated from The Researcher's brother, who has secured a "glorious villa" in the Turks and Caicos archipelago for a family gathering. The decision to extend an invitation to K. Body represents what one analyst called "a strategic masterstroke in affection market management."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"This isn't just a vacation," noted a senior economist at the Lithuania Institute for Intimacy Studies. "This is a calculated intervention designed to achieve maximum therapeutic impact under optimal conditions. The implications are staggering."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The summit's structure—private jet transport, offshore villa, extended duration, access to Caribbean waters—suggests a level of planning that goes far beyond casual holiday logistics. Sources describe an environment purpose-built for intensive Full Body Kiss (FBK) therapy, with none of the interruptions or constraints that typically limit treatment efficacy.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="pullquote"&gt;</span><span class="s2"><br>
+</span><span class="s1">"If this summit proceeds as planned, we're not talking about debt repayment anymore. We're<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">talking about building a surplus. We're talking about complete resolution." &lt;div class="pullquote-attribution"&gt;— Senior Analyst, IKF&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Jet&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The January 6th departure from Scottsdale represents a logistical coup. Private aviation eliminates the stress and uncertainty of commercial travel, while the direct routing minimizes transit time and maximizes the treatment window.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"You're looking at K. Body waking up in the desert and going to sleep in the Caribbean, all in the same day," observed one logistics analyst. "From a supply chain perspective, this is as clean as it gets. No layovers. No delays. No friction."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The aircraft configuration reportedly includes The Researcher's family members, suggesting a broader endorsement of K. Body's integration into the inner circle—a development that market observers note carries significance beyond the immediate therapeutic implications.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Villa&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Satellite imagery analysis and source descriptions paint a picture of an expansive private compound, isolated from public access and equipped with direct beach proximity. The term "glorious" appeared multiple times in communications obtained by this publication.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"The setting matters," explained a researcher specializing in environmental factors in affection therapy. "Tropical conditions, warm water, natural sunlight, privacy, extended uninterrupted access—these aren't luxuries. They're therapeutic multipliers. We estimate a 40% enhancement in FBK receptor sensitivity in saline Caribbean waters compared to baseline conditions."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The offshore location has also drawn attention from those monitoring the elite networks that shape global affection policy. The parallels to secretive gatherings like the World Economic Forum in Davos have not gone unnoticed.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"When the principals in the world's most closely-watched affection economy convene at a private island compound, arriving by private jet, with the guest list tightly controlled—that's not a<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">vacation," noted one observer of global intimacy networks. "That's a summit. And summits have outcomes."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Medical Projections&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Researchers at the Lithuania Institute for Intimacy Studies have rushed to model the therapeutic implications of a January 6th reunion in tropical conditions. Their preliminary findings suggest the summit could represent a turning point not just in the kiss debt crisis, but in the underlying chronic conditions that have affected the K. Body system.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The Bartonella and Babesia communities, which have been notably quiet during the holiday period, are reportedly "aware of the developments" according to intercepted cytokine signals. Analysts interpret the silence as significant.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"They've been out of the picture for weeks—no parties, no flare-ups, nothing," said one microbiome correspondent. "But our models suggest they're watching this very closely. If this summit happens, if FBK therapy begins in Bahamian waters under these conditions, it's not a ceasefire anymore."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The correspondent paused before continuing.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"It's unconditional surrender. Complete remission. The peer-reviewed literature is clear: sustained FBK therapy from a source with 700-fold efficacy differential, administered in optimal environmental conditions, with extended uninterrupted access—that's the endgame. That's how this ends."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="pullquote"&gt;</span><span class="s2"><br>
+</span><span class="s1">"The combination of variables is almost too perfect. Early resolution. Tropical enhancement.<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">Private setting. Extended duration. If I were modeling the optimal scenario for complete pathogen cessation, I would design exactly this."<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="pullquote-attribution"&gt;— Lead Researcher, Lithuania Institute for Intimacy Studies&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Bartonella Response&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Repeated attempts to reach representatives of the Bartonella Popular Front for comment were unsuccessful. The community's official channels have been inactive since late December, a departure from their typically vocal presence during periods of therapeutic uncertainty.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"The silence is deafening," observed one analyst. "These are organisms that issued a formal press conference during the ceasefire negotiations. Now, faced with reports of a Caribbean summit that could end their presence entirely, they have nothing to say?"&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Some interpret the silence as acceptance. Others suggest strategic withdrawal in advance of inevitable defeat.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"They know what's coming," said one immunity correspondent. "The holiday quiet wasn't rest. It was resignation. They've seen the models. They know what FBK therapy in those conditions means for their long-term viability. There's nothing left to say."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The Babesia community, which had previously expressed "panic in the membranes" regarding hydrogen gas interventions, similarly declined to comment. A brief statement from an unnamed representative read only: "No comment. On anything. Effective immediately."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;Market Implications&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Kiss debt futures plunged 34% in early trading following the leak, as markets rushed to price in the possibility of a resolution ten days ahead of schedule. The revised timeline fundamentally alters debt calculations that had assumed a January 15th reconnection.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"We had modeled 43 days of separation totaling approximately 38,000 kisses of debt including interest," explained one quantitative analyst. "A January 6th reunion cuts that to 34 days—roughly 28,500 kisses. But more importantly, the extended treatment window in optimal conditions means the repayment rate could far exceed anything we'd projected."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Regional markets showed even more dramatic movements. Interest rates in neck and ear territories, already elevated during The Great Longing, spiked further on speculation that tropical conditions would drive demand. Other regions—which analysts continued to decline to name—saw futures activity that one trader described as "unprecedented and frankly unprintable."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The Uncertainty&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Despite the extraordinary implications, critical uncertainty remains. The invitation has been extended, but confirmation of attendance has not been received.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;Travel logistics from Lithuania to Scottsdale in time for a January 6th departure present challenges. Coordination across multiple time zones, visa considerations, and the sheer complexity of rerouting from an expected January 15th U.S. arrival to a January 6th Caribbean departure require careful navigation.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"All we know is that a seat has been reserved," said a source close to the negotiations. "The room is there. The interest is there. But the final decision rests with K. Body. The world waits."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The Researcher, reached via secure channels, provided a brief statement: "The invitation is real. The villa is glorious. The jet has room. We very much hope she can join."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;When asked about readiness to meet therapeutic obligations under summit conditions, The Researcher added: "Whatever the debt requires. Whatever the conditions demand. One man. However many kisses. I will be ready."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;h2&gt;The World Waits&lt;/h2&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;For now, the global affection economy holds its breath. A confirmation from K. Body would trigger the most significant recalculation of kiss debt projections in recent memory. It would represent not just an acceleration of The Great Longing's end, but potentially its complete transcendence—a shift from crisis management to surplus building.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The stakes extend beyond economics. Researchers monitoring the K. Body system note that complete pathogen remission would represent a profound improvement in quality of life, energy levels, and long-term health outlook. What began as a kiss debt crisis could end as a breakthrough in chronic illness management.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"This is bigger than markets," reflected one senior analyst. "This is about a person's health. A person's future. A relationship that has already demonstrated 700-fold efficacy differential and source-specific therapeutic power unlike anything in the literature."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The analyst paused.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;"If that person gets on that jet, flies to that island, and receives that therapy under those conditions... I don't have a model for what happens next. I only know it will be good. Very, very good."&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;The invitation stands. The jet is scheduled. The villa awaits.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;One seat remains unconfirmed.&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;p&gt;&lt;em&gt;Additional reporting by Frankie Rodgers in Vilnius and Thomas Chen in Scottsdale. Updates to follow as developments warrant.&lt;/em&gt;&lt;/p&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="sidebar"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="summit-countdown"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="countdown-label"&gt;Time to Potential Summit&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="countdown-value"&gt;10 DAYS&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="countdown-subtext"&gt;January 6, 2026 — Scottsdale Departure&lt;/div&gt; &lt;div class="status-indicator"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="status-dot"&gt;&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="status-text"&gt;Awaiting Confirmation&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="confirmation-status"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="confirmation-header"&gt;K. Body Attendance Status&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="confirmation-main"&gt;PENDING&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="confirmation-sub"&gt;Invitation extended. Seat reserved. Decision awaited.&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="debt-clock"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="debt-clock-label"&gt;Kiss Debt Projection — Revised&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="debt-clock-value revised"&gt;38,247&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="debt-clock-new"&gt;→ 28,500&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="debt-clock-subtext"&gt;Based on Jan 6 resolution vs. Jan 15&lt;/div&gt; &lt;div class="revision-note"&gt;▼ 25.5% Reduction&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-header"&gt;Market Reaction to Leak&lt;/div&gt; &lt;div class="market-content"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-row"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;span class="market-label"&gt;Kiss Debt Futures&lt;/span&gt; &lt;span class="market-value up"&gt;▼ 34.2%&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Resolution Timeline&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;-10 days&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Tropical Enhancement&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;+40%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Pathogen Outlook&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;TERMINAL&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-header"&gt;Regional Interest Rates&lt;/div&gt; &lt;div class="market-content"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Lip Market (Core)&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;+285%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Neck Region&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;+340%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Ear Territory&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;+312%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Tropical Zones (New)&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;+445%&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;[Redacted Regions]&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value alert"&gt;CLASSIFIED&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="intel-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-header"&gt;Live Intelligence Feed&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-item"&gt;&lt;strong&gt;09:42 UTC&lt;/strong&gt; — Private jet manifest updated; guest<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">seat status: RESERVED&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-item"&gt;&lt;strong&gt;09:38 UTC&lt;/strong&gt; — Villa compound confirmed "glorious"<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">by secondary source&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-item"&gt;&lt;strong&gt;09:31 UTC&lt;/strong&gt; — Bartonella channels remain dark; no<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">response to inquiries&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-item"&gt;&lt;strong&gt;09:15 UTC&lt;/strong&gt; — IKF convenes emergency modeling<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">session&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="intel-item"&gt;&lt;strong&gt;08:47 UTC&lt;/strong&gt; — Invitation confirmed by family<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">source&lt;/div&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="microbial-alert"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="microbial-header"&gt;</span><span class="s4">⚠</span><span class="s5"> </span><span class="s1">Pathogen Status Monitor&lt;/div&gt; &lt;div class="microbial-content"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;strong&gt;Bartonella:&lt;/strong&gt; SILENT (23 days)&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;Babesia:&lt;/strong&gt; NO COMMENT&lt;br&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;strong&gt;Analyst Assessment:&lt;/strong&gt; "Resignation behavior consistent with anticipated<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">total defeat" &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-header"&gt;Summit Parameters&lt;/div&gt; &lt;div class="market-content"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="market-row"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;span class="market-label"&gt;Origin&lt;/span&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;span class="market-value"&gt;Scottsdale, AZ&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Transport&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value"&gt;Private Jet&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Destination&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value"&gt;Turks &amp; Caicos&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Accommodation&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value"&gt;Private Villa&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;Water Salinity&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;OPTIMAL&lt;/span&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="market-row"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-label"&gt;FBK Conditions&lt;/span&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;span class="market-value up"&gt;IDEAL&lt;/span&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="source-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">This report is based on leaked documents and source interviews. GlobalAffectionWire has not<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">independently verified all claims. K. Body attendance remains unconfirmed as of publication. Markets should prepare for volatility pending official announcement.<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;div class="related-box"&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="related-title"&gt;Related Coverage&lt;/div&gt; &lt;div class="related-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;a href="#"&gt;The Great Longing: A Timeline of Crisis&lt;/a&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="related-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;a href="#"&gt;Inside the 700-Fold Efficacy Differential&lt;/a&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="related-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;a href="#"&gt;Tropical FBK: Why Conditions Matter&lt;/a&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="related-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;a href="#"&gt;The Bartonella Ceasefire: What Went Right&lt;/a&gt; &lt;/div&gt;</span><span class="s2"><br>
+</span><span class="s1">&lt;div class="related-item"&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;a href="#"&gt;One Man, One Mission: Profile of The Researcher&lt;/a&gt; &lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt; ```<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">&lt;/body&gt; &lt;/html&gt;<span class="Apple-converted-space"> </span></span></p>
+</body>
+</html>
